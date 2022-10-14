@@ -597,7 +597,7 @@ public class SshPlugin implements MethodCallHandler, StreamHandler, FlutterPlugi
   private void disconnectSFTP(final HashMap args) {
     new Thread(() -> {
       SSHClient client = clientPool.get(args.get("id"));
-      if (Objects.requireNonNull(client)._sftpSession != null) {
+      if (client != null && Objects.requireNonNull(client)._sftpSession != null) {
         client._sftpSession.disconnect();
       }
     }).start();
